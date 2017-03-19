@@ -24,7 +24,7 @@ extern crate javascriptcore_sys;
 
 use std::ptr;
 
-use glib::translate::FromGlibPtr;
+use glib::translate::{FromGlibPtrFull, FromGlibPtrNone};
 use javascriptcore_sys::{JSGlobalContextRef, JSValueRef, JSValueIsArray, JSValueIsDate, JSValueIsBoolean, JSValueIsNull, JSValueIsNumber, JSValueIsObject, JSValueIsString, JSValueIsUndefined, JSValueToBoolean, JSValueToNumber};
 
 pub struct GlobalContext {
@@ -85,13 +85,15 @@ impl Value {
     }
 }
 
-impl FromGlibPtr<JSValueRef> for Value {
+impl FromGlibPtrNone<JSValueRef> for Value {
     unsafe fn from_glib_none(ptr: JSValueRef) -> Self {
         Value {
             raw: ptr,
         }
     }
+}
 
+impl FromGlibPtrFull<JSValueRef> for Value {
     unsafe fn from_glib_full(ptr: JSValueRef) -> Self {
         Value {
             raw: ptr,
@@ -99,13 +101,15 @@ impl FromGlibPtr<JSValueRef> for Value {
     }
 }
 
-impl FromGlibPtr<JSGlobalContextRef> for GlobalContext {
+impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContext {
     unsafe fn from_glib_none(ptr: JSValueRef) -> Self {
         GlobalContext {
             raw: ptr,
         }
     }
+}
 
+impl FromGlibPtrFull<JSGlobalContextRef> for GlobalContext {
     unsafe fn from_glib_full(ptr: JSValueRef) -> Self {
         GlobalContext {
             raw: ptr,
