@@ -1,11 +1,10 @@
 [package]
+authors = ["Antoni Boucher <bouanto@zoho.com>"]
 name = "javascriptcore"
 version = "0.1.0"
-authors = ["Antoni Boucher <bouanto@zoho.com>"]
 
-[dependencies.glib]
-git = "https://github.com/gtk-rs/glib"
-version = "0.1.0"
+[dependencies]
+glib = "^0.1.2"
 
 [dependencies.javascriptcore-sys]
 git = "https://github.com/antoyo/javascriptcore-sys-rs"
