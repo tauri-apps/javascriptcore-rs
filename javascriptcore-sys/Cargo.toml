@@ -5,7 +5,7 @@ authors = ["The Gtk-rs Project Developers"]
 
 description = "Sys functions for the Rust bindings of the javacriptcore library"
 repository = "https://github.com/gtk-rs/javascriptcore-rs"
-licence = "MIT"
+license = "MIT"
 homepage = "http://gtk-rs.org"
 keywords = ["javascript", "gtk-rs", "gnome"]
 
