@@ -13,5 +13,5 @@ keywords = ["javascript", "gtk-rs", "gnome"]
 name = "javascriptcore"
 
 [dependencies]
-glib = "^0.1.3"
+glib = "^0.3.0"
 javascriptcore-rs-sys = "0.1"
