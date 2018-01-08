@@ -8,11 +8,7 @@ extern crate javascriptcore_sys;
 use std::ptr;
 
 use glib::translate::{FromGlibPtrFull, FromGlibPtrNone};
-use javascriptcore_sys::{
-    JSGlobalContextRef, JSValueRef, JSValueIsArray, JSValueIsDate, JSValueIsBoolean, JSValueIsNull,
-    JSValueIsNumber, JSValueIsObject, JSValueIsString, JSValueIsUndefined, JSValueToBoolean,
-    JSValueToNumber
-};
+use javascriptcore_sys::*;
 
 pub struct GlobalContext {
     raw: JSGlobalContextRef,
@@ -60,8 +56,7 @@ impl Value {
         let result = unsafe { JSValueToNumber(context.raw, self.raw, &mut exception) };
         if exception.is_null() {
             Some(result)
-        }
-        else {
+        } else {
             None
         }
     }
@@ -69,6 +64,24 @@ impl Value {
     pub fn to_boolean(&self, context: &GlobalContext) -> bool {
         let value = unsafe { JSValueToBoolean(context.raw, self.raw) };
         value != 0
+    }
+
+    pub fn to_string(&self, context: &GlobalContext) -> Option<String> {
+        unsafe {
+            let mut exception = ptr::null_mut();
+            let jsstring = JSValueToStringCopy(context.raw, self.raw, &mut exception);
+
+            if exception.is_null() {
+                let cap = JSStringGetMaximumUTF8CStringSize(jsstring);
+                let mut buf = Vec::<u8>::with_capacity(cap);
+                let len = JSStringGetUTF8CString(jsstring, buf.as_mut_ptr() as _, cap);
+                JSStringRelease(jsstring);
+                buf.set_len(len - 1);
+                String::from_utf8(buf).ok()
+            } else {
+                None
+            }
+        }
     }
 }
 
