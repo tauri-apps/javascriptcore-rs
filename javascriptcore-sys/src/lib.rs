@@ -4,10 +4,11 @@
 
 extern crate libc;
 
-use libc::{c_double, c_void};
+use libc::{c_char, c_double, c_void};
 
 pub type JSGlobalContextRef = *mut c_void;
 pub type JSValueRef = *mut c_void;
+pub type JSStringRef = *mut c_void;
 
 extern "C" {
     pub fn JSValueIsBoolean(ctx: JSGlobalContextRef, value: JSValueRef) -> u8;
@@ -20,4 +21,8 @@ extern "C" {
     pub fn JSValueIsDate(ctx: JSGlobalContextRef, value: JSValueRef) -> u8;
     pub fn JSValueToNumber(ctx: JSGlobalContextRef, value: JSValueRef, exception: *mut JSValueRef) -> c_double;
     pub fn JSValueToBoolean(ctx: JSGlobalContextRef, value: JSValueRef) -> u8;
+    pub fn JSValueToStringCopy(ctx: JSGlobalContextRef, value: JSValueRef, exception: *mut JSValueRef) -> JSStringRef;
+    pub fn JSStringRelease(string: JSStringRef);
+    pub fn JSStringGetMaximumUTF8CStringSize(string: JSStringRef) -> usize;
+    pub fn JSStringGetUTF8CString(string: JSStringRef, buffer: *mut c_char, buffer_size: usize) -> usize;
 }
