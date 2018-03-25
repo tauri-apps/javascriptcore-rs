@@ -101,7 +101,7 @@ impl FromGlibPtrFull<JSValueRef> for Value {
 }
 
 impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContext {
-    unsafe fn from_glib_none(ptr: JSValueRef) -> Self {
+    unsafe fn from_glib_none(ptr: JSGlobalContextRef) -> Self {
         GlobalContext {
             raw: ptr,
         }
@@ -109,7 +109,7 @@ impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContext {
 }
 
 impl FromGlibPtrFull<JSGlobalContextRef> for GlobalContext {
-    unsafe fn from_glib_full(ptr: JSValueRef) -> Self {
+    unsafe fn from_glib_full(ptr: JSGlobalContextRef) -> Self {
         GlobalContext {
             raw: ptr,
         }
