@@ -62,8 +62,7 @@ impl Value {
     }
 
     pub fn to_boolean(&self, context: &GlobalContext) -> bool {
-        let value = unsafe { JSValueToBoolean(context.raw, self.raw) };
-        value != 0
+        unsafe { JSValueToBoolean(context.raw, self.raw) != 0}
     }
 
     pub fn to_string(&self, context: &GlobalContext) -> Option<String> {
