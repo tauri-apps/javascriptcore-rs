@@ -62,8 +62,7 @@ impl Value {
     }
 
     pub fn to_boolean(&self, context: &GlobalContext) -> bool {
-        let value = unsafe { JSValueToBoolean(context.raw, self.raw) };
-        value != 0
+        unsafe { JSValueToBoolean(context.raw, self.raw) != 0}
     }
 
     pub fn to_string(&self, context: &GlobalContext) -> Option<String> {
@@ -102,7 +101,7 @@ impl FromGlibPtrFull<JSValueRef> for Value {
 }
 
 impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContext {
-    unsafe fn from_glib_none(ptr: JSValueRef) -> Self {
+    unsafe fn from_glib_none(ptr: JSGlobalContextRef) -> Self {
         GlobalContext {
             raw: ptr,
         }
@@ -110,7 +109,7 @@ impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContext {
 }
 
 impl FromGlibPtrFull<JSGlobalContextRef> for GlobalContext {
-    unsafe fn from_glib_full(ptr: JSValueRef) -> Self {
+    unsafe fn from_glib_full(ptr: JSGlobalContextRef) -> Self {
         GlobalContext {
             raw: ptr,
         }
