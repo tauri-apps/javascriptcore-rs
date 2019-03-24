@@ -10,48 +10,52 @@ use std::ptr;
 use glib::translate::{FromGlibPtrFull, FromGlibPtrNone};
 use javascriptcore_sys::*;
 
-pub struct GlobalContext {
+pub struct GlobalContextRef {
     raw: JSGlobalContextRef,
 }
 
-pub struct Value {
+pub struct ValueRef {
     raw: JSValueRef,
 }
 
-impl Value {
-    pub fn is_boolean(&self, context: &GlobalContext) -> bool {
+pub struct Value {
+    raw: JSCValue,
+}
+
+impl ValueRef {
+    pub fn is_boolean(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsBoolean(context.raw, self.raw) != 0 }
     }
 
-    pub fn is_null(&self, context: &GlobalContext) -> bool {
+    pub fn is_null(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsNull(context.raw, self.raw) != 0 }
     }
 
-    pub fn is_undefined(&self, context: &GlobalContext) -> bool {
+    pub fn is_undefined(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsUndefined(context.raw, self.raw) != 0 }
     }
 
-    pub fn is_number(&self, context: &GlobalContext) -> bool {
+    pub fn is_number(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsNumber(context.raw, self.raw) != 0 }
     }
 
-    pub fn is_string(&self, context: &GlobalContext) -> bool {
+    pub fn is_string(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsString(context.raw, self.raw) != 0 }
     }
 
-    pub fn is_object(&self, context: &GlobalContext) -> bool {
+    pub fn is_object(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsObject(context.raw, self.raw) != 0 }
     }
 
-    pub fn is_array(&self, context: &GlobalContext) -> bool {
+    pub fn is_array(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsArray(context.raw, self.raw) != 0 }
     }
 
-    pub fn is_date(&self, context: &GlobalContext) -> bool {
+    pub fn is_date(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueIsDate(context.raw, self.raw) != 0 }
     }
 
-    pub fn to_number(&self, context: &GlobalContext) -> Option<f64> {
+    pub fn to_number(&self, context: &GlobalContextRef) -> Option<f64> {
         let mut exception = ptr::null_mut();
         let result = unsafe { JSValueToNumber(context.raw, self.raw, &mut exception) };
         if exception.is_null() {
@@ -61,11 +65,11 @@ impl Value {
         }
     }
 
-    pub fn to_boolean(&self, context: &GlobalContext) -> bool {
+    pub fn to_boolean(&self, context: &GlobalContextRef) -> bool {
         unsafe { JSValueToBoolean(context.raw, self.raw) != 0}
     }
 
-    pub fn to_string(&self, context: &GlobalContext) -> Option<String> {
+    pub fn to_string(&self, context: &GlobalContextRef) -> Option<String> {
         unsafe {
             let mut exception = ptr::null_mut();
             let jsstring = JSValueToStringCopy(context.raw, self.raw, &mut exception);
@@ -84,33 +88,42 @@ impl Value {
     }
 }
 
-impl FromGlibPtrNone<JSValueRef> for Value {
+impl FromGlibPtrNone<JSValueRef> for ValueRef {
     unsafe fn from_glib_none(ptr: JSValueRef) -> Self {
-        Value {
+        ValueRef {
             raw: ptr,
         }
     }
 }
 
-impl FromGlibPtrFull<JSValueRef> for Value {
+impl FromGlibPtrFull<JSValueRef> for ValueRef {
     unsafe fn from_glib_full(ptr: JSValueRef) -> Self {
+        ValueRef {
+            raw: ptr,
+        }
+    }
+}
+
+impl FromGlibPtrNone<*mut JSCValue> for Value {
+    unsafe fn from_glib_none(ptr: *mut JSCValue) -> Self {
+        assert!(ptr != ptr::null_mut());
         Value {
-            raw: ptr,
+            raw: *ptr,
         }
     }
 }
 
-impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContext {
+impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContextRef {
     unsafe fn from_glib_none(ptr: JSGlobalContextRef) -> Self {
-        GlobalContext {
+        GlobalContextRef {
             raw: ptr,
         }
     }
 }
 
-impl FromGlibPtrFull<JSGlobalContextRef> for GlobalContext {
+impl FromGlibPtrFull<JSGlobalContextRef> for GlobalContextRef {
     unsafe fn from_glib_full(ptr: JSGlobalContextRef) -> Self {
-        GlobalContext {
+        GlobalContextRef {
             raw: ptr,
         }
     }

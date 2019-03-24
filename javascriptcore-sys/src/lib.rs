@@ -6,6 +6,8 @@ extern crate libc;
 
 use libc::{c_char, c_double, c_void};
 
+pub type JSCValue = *mut c_void;
+pub type JSCContext = *mut c_void;
 pub type JSGlobalContextRef = *mut c_void;
 pub type JSValueRef = *mut c_void;
 pub type JSStringRef = *mut c_void;

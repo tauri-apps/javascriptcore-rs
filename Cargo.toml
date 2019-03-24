@@ -16,5 +16,5 @@ name = "javascriptcore"
 git = "https://github.com/gtk-rs/glib"
 
 [dependencies.javascriptcore-rs-sys]
-git = "https://github.com/gtk-rs/javascriptcore-rs"
+path = "./javascriptcore-sys"
 version = "0.1.1"
