@@ -1,3 +1,4 @@
+dist: xenial
 language: rust
 rust:
   - nightly
@@ -10,6 +11,7 @@ addons:
   apt:
     packages:
     - libgtk-3-dev
+    - libmount-dev
 script:
   - rustc --version
   - cargo build
