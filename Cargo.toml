@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore-rs"
-version = "0.6.0"
+version = "0.6.1"
 authors = ["The Gtk-rs Project Developers"]
 
 description = "Rust bindings for the javacriptcore library"
@@ -14,4 +14,6 @@ name = "javascriptcore"
 
 [dependencies]
 glib = "^0.7.0"
-javascriptcore-rs-sys = "0.1.1"
+[dependencies.javascriptcore-rs-sys]
+path = "./javascriptcore-sys"
+version = "0.1.1"
