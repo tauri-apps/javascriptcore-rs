@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore-rs"
-version = "0.9.0"
+version = "0.10.0"
 authors = ["The Gtk-rs Project Developers"]
 
 description = "Rust bindings for the javacriptcore library"
@@ -13,7 +13,7 @@ keywords = ["javascript", "gtk-rs", "gnome"]
 name = "javascriptcore"
 
 [dependencies]
-glib = "^0.9.1"
+glib = "^0.10.0"
 [dependencies.javascriptcore-rs-sys]
 path = "./javascriptcore-sys"
 version = "0.2.0"
