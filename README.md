@@ -1,13 +1,13 @@
 # javascriptcore [![Build Status](https://travis-ci.org/gtk-rs/javascriptcore-rs.png?branch=master)](https://travis-ci.org/gtk-rs/javascriptcore-rs) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/gtk-rs/gtk)
 
-[Project site](http://gtk-rs.org/) | [Online documentation](http://gtk-rs.org/docs/)
+[Project site](https://gtk-rs.org/) | [Online documentation](https://gtk-rs.org/docs/)
 
 __Rust__ bindings and wrappers for __javascriptcore__.
 
 ## Using
 
 We recommend using [crates from crates.io](https://crates.io/keywords/gtk-rs),
-as [demonstrated here](http://gtk-rs.org/#using).
+as [demonstrated here](https://gtk-rs.org/#using).
 
 If you want to track the bleeding edge, use the git dependency instead:
 
