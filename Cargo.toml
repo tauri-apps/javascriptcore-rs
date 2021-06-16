@@ -13,7 +13,7 @@ keywords = ["javascript", "gtk-rs", "gnome"]
 name = "javascriptcore"
 
 [dependencies.glib]
-git = "https://github.com/gtk-rs/gtk-rs.git"
+git = "https://github.com/gtk-rs/gtk-rs-core.git"
 
 [dependencies.javascriptcore-rs-sys]
 path = "./javascriptcore-sys"
