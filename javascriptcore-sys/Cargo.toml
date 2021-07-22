@@ -1,16 +1,40 @@
 [package]
 name = "javascriptcore-rs-sys"
-version = "0.1.1"
+version = "0.2.0"
 authors = ["The Gtk-rs Project Developers"]
-
 description = "Sys functions for the Rust bindings of the javacriptcore library"
 repository = "https://github.com/gtk-rs/javascriptcore-rs"
 license = "MIT"
 homepage = "https://gtk-rs.org"
 keywords = ["javascript", "gtk-rs", "gnome"]
+links = "\"javascriptcoregtk-4.0\""
+edition = "2018"
+build = "build.rs"
+
+[package.metadata.system-deps.javascriptcoregtk_4_0]
+name = "javascriptcoregtk-4.0"
+version = "2.32"
+[package.metadata.docs.rs]
+features = ["dox"]
 
 [lib]
 name = "javascriptcore_sys"
 
 [dependencies]
-libc = "^0.2"
+libc = "0.2"
+
+[dependencies.glib-sys]
+git = "https://github.com/gtk-rs/gtk-rs-core.git"
+
+[dependencies.gobject-sys]
+git = "https://github.com/gtk-rs/gtk-rs-core.git"
+
+[build-dependencies]
+system-deps = "3"
+
+[dev-dependencies]
+shell-words = "1.0.0"
+tempfile = "3"
+
+[features]
+dox = []

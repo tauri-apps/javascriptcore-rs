@@ -2,13 +2,14 @@
 // See the COPYRIGHT file at the top-level directory of this distribution.
 // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 
-extern crate glib;
-extern crate javascriptcore_sys;
+mod auto;
 
-use std::ptr;
+pub use auto::*;
+pub use auto::traits::*;
+pub use ffi;
 
 use glib::translate::{FromGlibPtrFull, FromGlibPtrNone};
-use javascriptcore_sys::*;
+use ffi::*;
 
 pub struct GlobalContextRef {
     raw: JSGlobalContextRef,
@@ -16,10 +17,6 @@ pub struct GlobalContextRef {
 
 pub struct ValueRef {
     raw: JSValueRef,
-}
-
-pub struct Value {
-    raw: JSCValue,
 }
 
 impl ValueRef {
@@ -56,7 +53,7 @@ impl ValueRef {
     }
 
     pub fn to_number(&self, context: &GlobalContextRef) -> Option<f64> {
-        let mut exception = ptr::null_mut();
+        let mut exception = std::ptr::null_mut();
         let result = unsafe { JSValueToNumber(context.raw, self.raw, &mut exception) };
         if exception.is_null() {
             Some(result)
@@ -71,7 +68,7 @@ impl ValueRef {
 
     pub fn to_string(&self, context: &GlobalContextRef) -> Option<String> {
         unsafe {
-            let mut exception = ptr::null_mut();
+            let mut exception = std::ptr::null_mut();
             let jsstring = JSValueToStringCopy(context.raw, self.raw, &mut exception);
 
             if exception.is_null() {
@@ -104,14 +101,6 @@ impl FromGlibPtrFull<JSValueRef> for ValueRef {
     }
 }
 
-impl FromGlibPtrNone<*mut JSCValue> for Value {
-    unsafe fn from_glib_none(ptr: *mut JSCValue) -> Self {
-        assert!(ptr != ptr::null_mut());
-        Value {
-            raw: *ptr,
-        }
-    }
-}
 
 impl FromGlibPtrNone<JSGlobalContextRef> for GlobalContextRef {
     unsafe fn from_glib_none(ptr: JSGlobalContextRef) -> Self {

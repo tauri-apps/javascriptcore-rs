@@ -2,7 +2,7 @@
 name = "javascriptcore-rs"
 version = "0.10.0"
 authors = ["The Gtk-rs Project Developers"]
-
+edition = "2018"
 description = "Rust bindings for the javacriptcore library"
 repository = "https://github.com/gtk-rs/javascriptcore-rs"
 license = "MIT"
@@ -15,6 +15,10 @@ name = "javascriptcore"
 [dependencies.glib]
 git = "https://github.com/gtk-rs/gtk-rs-core.git"
 
-[dependencies.javascriptcore-rs-sys]
-path = "./javascriptcore-sys"
-version = "0.1.1"
+[dependencies.ffi]
+package = "javascriptcore-rs-sys"
+path = "javascriptcore-sys"
+version = "0.2.0"
+
+[dependencies]
+bitflags = "^1.0"
