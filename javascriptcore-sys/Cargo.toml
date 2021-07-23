@@ -21,13 +21,9 @@ features = ["dox"]
 name = "javascriptcore_sys"
 
 [dependencies]
+glib-sys = "^0.14"
+gobject-sys = "^0.14"
 libc = "0.2"
-
-[dependencies.glib-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core.git"
-
-[dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core.git"
 
 [build-dependencies]
 system-deps = "3"
