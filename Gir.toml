@@ -2,7 +2,7 @@
 library = "JavaScriptCore"
 version = "4.0"
 target_path = "."
-min_cfg_version = "2.32"
+min_cfg_version = "2.24"
 work_mode = "normal"
 girs_directories = [ "gir-files/" ]
 deprecate_by_min_version = true
