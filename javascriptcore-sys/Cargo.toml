@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore-rs-sys"
-version = "0.3.0"
+version = "0.3.1"
 authors = [ "The Gtk-rs Project Developers" ]
 description = "Sys functions for the Rust bindings of the javacriptcore library"
 repository = "https://github.com/tauri-apps/javascriptcore-rs"
