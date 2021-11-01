@@ -79,7 +79,7 @@
   },
   "packages": {
     "javascriptcore-rs-sys": {
-      "path": "./javascriptcore-sys",
+      "path": "./sys",
       "manager": "rust"
     },
     "javascriptcore-rs": {

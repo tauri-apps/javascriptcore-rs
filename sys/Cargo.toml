@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore-rs-sys"
-version = "0.3.1"
+version = "0.3.2"
 authors = [ "The Gtk-rs Project Developers" ]
 description = "Sys functions for the Rust bindings of the javacriptcore library"
 repository = "https://github.com/tauri-apps/javascriptcore-rs"
@@ -17,10 +17,10 @@ version = "2.24"
   version = "2.28"
 
 [package.metadata.docs.rs]
-features = [ "dox" ]
+features = ["dox"]
 
 [lib]
-name = "javascriptcore_sys"
+name = "javascriptcore_rs_sys"
 
 [dependencies]
 libc = "0.2"
@@ -35,5 +35,5 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-v2_28 = [ ]
-dox = [ ]
+v2_28 = []
+dox = []
