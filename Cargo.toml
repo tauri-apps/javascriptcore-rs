@@ -1,6 +1,6 @@
 [package]
 name = "javascriptcore-rs"
-version = "0.15.5"
+version = "0.15.2"
 edition = "2018"
 description = "Rust bindings for the javacriptcore library"
 repository = "https://github.com/tauri-apps/javascriptcore-rs"
@@ -20,7 +20,7 @@ bitflags = "^1.0"
   [dependencies.ffi]
   package = "javascriptcore-rs-sys"
   path = "./sys"
-  version = "0.3.2"
+  version = "0.3"
 
 [features]
 v2_28 = [ "ffi/v2_28" ]
