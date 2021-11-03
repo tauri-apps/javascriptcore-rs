@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.15.5]
+
+- Regenerate with latest gir-files
+  - [68fa7e5](https://github.com/tauri-apps/javascriptcore-rs/commit/68fa7e5f12110ac47c07afaaeebfeb7067dfca21) Add change file on 2021-11-04
+
 ## \[0.15.1]
 
 - Enable cfg_doc to fix build doc error on docs.rs

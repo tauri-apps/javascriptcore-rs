@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.3.3]
+
+- Regenerate with latest gir-files
+  - [68fa7e5](https://github.com/tauri-apps/javascriptcore-rs/commit/68fa7e5f12110ac47c07afaaeebfeb7067dfca21) Add change file on 2021-11-04
+
 ## \[0.3.1]
 
 - Update url in Cargo.toml.
