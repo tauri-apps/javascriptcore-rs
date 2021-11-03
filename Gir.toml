@@ -4,14 +4,11 @@ version = "4.0"
 target_path = "."
 min_cfg_version = "2.24"
 work_mode = "normal"
-girs_directories = [ "gir-files/" ]
+girs_directories = ["gir-files/"]
 deprecate_by_min_version = true
 single_version_file = true
 
-external_libraries = [
-    "GLib",
-    "GObject",
-]
+external_libraries = ["GLib", "GObject"]
 
 generate = [
     "JavaScriptCore.CheckSyntaxMode",
@@ -32,7 +29,6 @@ generate = [
     "JavaScriptCore.PropertyGetter",
     "JavaScriptCore.PropertySetter",
     "JavaScriptCore.Setter",
-    "JavaScriptCore.StringRef",
     "JavaScriptCore.ValuePropertyFlags",
     "JavaScriptCore.VariadicFunction",
     "JavaScriptCore.VirtualMachine",
@@ -43,6 +39,8 @@ manual = [
     "GLib.DestroyNotify",
     "GLib.OptionGroup",
     "GObject.Callback",
+    "JavaScriptCore.StringRef",
+    "JavaScriptCore.GlobalContextRef",
 ]
 
 [[object]]
@@ -55,8 +53,11 @@ name = "JavaScriptCore.Value"
 status = "generate"
 generate_builder = true
 
+[[object.function]]
+name = "object_define_property_accessor"
+ignore = true
+
 [[object]]
 name = "JavaScriptCore.WeakValue"
 status = "generate"
 generate_builder = true
-
