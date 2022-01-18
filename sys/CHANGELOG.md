@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.4.0]
+
+- Update to gtk 0.15
+  - [4aa6f17](https://github.com/tauri-apps/javascriptcore-rs/commit/4aa6f1758343f50cc7f7af42ac903077349b8051) Update to gtk 0.15 on 2022-01-18
+
 ## \[0.3.3]
 
 - Regenerate with latest gir-files
