@@ -14,13 +14,13 @@ features = [ "dox" ]
 name = "javascriptcore"
 
 [dependencies]
-glib = "^0.14.0"
+glib = "^0.15.0"
 bitflags = "^1.0"
 
   [dependencies.ffi]
   package = "javascriptcore-rs-sys"
   path = "./sys"
-  version = "0.3"
+  version = "0.4"
 
 [features]
 v2_28 = [ "ffi/v2_28" ]
