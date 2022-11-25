@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/vhdirk/gir-files @ 5c5c482b7f4a)
 // DO NOT EDIT
 
-use javascriptcore_sys::*;
+use javascriptcore_rs_sys::*;
 use std::{
   env,
   error::Error,
@@ -14,7 +14,7 @@ use std::{
 };
 use tempfile::Builder;
 
-static PACKAGES: &[&str] = &["javascriptcoregtk-4.0"];
+static PACKAGES: &[&str] = &["javascriptcoregtk-4.1"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
@@ -317,6 +317,7 @@ const RUST_LAYOUTS: &[(&str, Layout)] = &[
   ),
 ];
 
+// It'd be nice to have a bit more documentation on this
 const RUST_CONSTANTS: &[(&str, &str)] = &[
   ("(gint) JSC_CHECK_SYNTAX_MODE_MODULE", "1"),
   ("(gint) JSC_CHECK_SYNTAX_MODE_SCRIPT", "0"),
@@ -330,8 +331,8 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     "3",
   ),
   ("JSC_MAJOR_VERSION", "2"),
-  ("JSC_MICRO_VERSION", "1"),
-  ("JSC_MINOR_VERSION", "34"),
+  ("JSC_MICRO_VERSION", "2"),
+  ("JSC_MINOR_VERSION", "38"),
   ("JSC_OPTIONS_USE_DFG", "useDFGJIT"),
   ("JSC_OPTIONS_USE_FTL", "useFTLJIT"),
   ("JSC_OPTIONS_USE_JIT", "useJIT"),

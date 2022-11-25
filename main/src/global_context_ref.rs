@@ -1,6 +1,5 @@
 use ffi::*;
 use glib::translate::*;
-use std::ptr;
 
 pub struct GlobalContextRef {
   raw: JSGlobalContextRef,

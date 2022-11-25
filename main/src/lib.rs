@@ -3,10 +3,6 @@
 // // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 #![cfg_attr(feature = "dox", feature(doc_cfg))]
 
-use ffi::*;
-use glib::translate::{FromGlibPtrFull, FromGlibPtrNone};
-use std::ptr;
-
 mod auto;
 pub use auto::{traits::*, *};
 mod global_context_ref;

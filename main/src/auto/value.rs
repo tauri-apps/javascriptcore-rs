@@ -6,7 +6,7 @@ use crate::{Context, ValuePropertyFlags};
 use glib::{
   object::{Cast, IsA},
   translate::*,
-  StaticType, ToValue,
+  ToValue,
 };
 use std::fmt;
 
@@ -171,7 +171,7 @@ impl ValueBuilder {
     if let Some(ref context) = self.context {
       properties.push(("context", context));
     }
-    glib::Object::new::<Value>(&properties).expect("Failed to create an instance of Value")
+    glib::Object::new::<Value>(&properties)
   }
 
   pub fn context(mut self, context: &impl IsA<Context>) -> Self {
