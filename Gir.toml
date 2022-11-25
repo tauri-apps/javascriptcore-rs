@@ -1,63 +1,63 @@
 [options]
-library = "JavaScriptCore"
-version = "4.0"
-target_path = "."
-min_cfg_version = "2.24"
-work_mode = "normal"
-girs_directories = ["gir-files/"]
 deprecate_by_min_version = true
+girs_directories = ["gir-files/"]
+library = "JavaScriptCore"
+min_cfg_version = "2.38"
 single_version_file = true
+target_path = "."
+version = "4.1"
+work_mode = "normal"
 
 external_libraries = ["GLib", "GObject"]
 
 generate = [
-    "JavaScriptCore.CheckSyntaxMode",
-    "JavaScriptCore.CheckSyntaxResult",
-    "JavaScriptCore.Class",
-    "JavaScriptCore.ClassDeletePropertyFunction",
-    "JavaScriptCore.ClassEnumeratePropertiesFunction",
-    "JavaScriptCore.ClassGetPropertyFunction",
-    "JavaScriptCore.ClassHasPropertyFunction",
-    "JavaScriptCore.ClassSetPropertyFunction",
-    "JavaScriptCore.ClassVariadicFunction",
-    "JavaScriptCore.Constructor",
-    "JavaScriptCore.Exception",
-    "JavaScriptCore.ExceptionHandler",
-    "JavaScriptCore.Getter",
-    "JavaScriptCore.OptionsFunc",
-    "JavaScriptCore.OptionType",
-    "JavaScriptCore.PropertyGetter",
-    "JavaScriptCore.PropertySetter",
-    "JavaScriptCore.Setter",
-    "JavaScriptCore.ValuePropertyFlags",
-    "JavaScriptCore.VariadicFunction",
-    "JavaScriptCore.VirtualMachine",
+  "JavaScriptCore.CheckSyntaxMode",
+  "JavaScriptCore.CheckSyntaxResult",
+  "JavaScriptCore.Class",
+  "JavaScriptCore.ClassDeletePropertyFunction",
+  "JavaScriptCore.ClassEnumeratePropertiesFunction",
+  "JavaScriptCore.ClassGetPropertyFunction",
+  "JavaScriptCore.ClassHasPropertyFunction",
+  "JavaScriptCore.ClassSetPropertyFunction",
+  "JavaScriptCore.ClassVariadicFunction",
+  "JavaScriptCore.Constructor",
+  "JavaScriptCore.Exception",
+  "JavaScriptCore.ExceptionHandler",
+  "JavaScriptCore.Getter",
+  "JavaScriptCore.OptionsFunc",
+  "JavaScriptCore.OptionType",
+  "JavaScriptCore.PropertyGetter",
+  "JavaScriptCore.PropertySetter",
+  "JavaScriptCore.Setter",
+  "JavaScriptCore.ValuePropertyFlags",
+  "JavaScriptCore.VariadicFunction",
+  "JavaScriptCore.VirtualMachine",
 ]
 
 manual = [
-    "GLib.Bytes",
-    "GLib.DestroyNotify",
-    "GLib.OptionGroup",
-    "GObject.Callback",
-    "JavaScriptCore.StringRef",
-    "JavaScriptCore.GlobalContextRef",
+  "GLib.Bytes",
+  "GLib.DestroyNotify",
+  "GLib.OptionGroup",
+  "GObject.Callback",
+  "JavaScriptCore.StringRef",
+  "JavaScriptCore.GlobalContextRef",
 ]
 
 [[object]]
+generate_builder = true
 name = "JavaScriptCore.Context"
 status = "generate"
-generate_builder = true
 
 [[object]]
+generate_builder = true
 name = "JavaScriptCore.Value"
 status = "generate"
-generate_builder = true
 
 [[object.function]]
-name = "object_define_property_accessor"
 ignore = true
+name = "object_define_property_accessor"
 
 [[object]]
+generate_builder = true
 name = "JavaScriptCore.WeakValue"
 status = "generate"
-generate_builder = true
