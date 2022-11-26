@@ -6,7 +6,7 @@ use crate::{CheckSyntaxMode, CheckSyntaxResult, Exception, Value, VirtualMachine
 use glib::{
   object::{Cast, IsA},
   translate::*,
-  StaticType, ToValue,
+  ToValue,
 };
 use std::{boxed::Box as Box_, fmt, ptr};
 
@@ -79,7 +79,7 @@ impl ContextBuilder {
     if let Some(ref virtual_machine) = self.virtual_machine {
       properties.push(("virtual-machine", virtual_machine));
     }
-    glib::Object::new::<Context>(&properties).expect("Failed to create an instance of Context")
+    glib::Object::new::<Context>(&properties)
   }
 
   pub fn virtual_machine(mut self, virtual_machine: &impl IsA<VirtualMachine>) -> Self {

@@ -6,7 +6,7 @@ __Rust__ bindings and wrappers for __javascriptcore__.
 
 ```toml
 [dependencies]
-javascriptcore-rs = "0.14"
+javascriptcore-rs = "0.16"
 ```
 
 ## License
