@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.5.0]
+
+- Update gtk crates to 0.16 and update to 2021 edition.
+  - [1674d07](https://github.com/tauri-apps/javascriptcore-rs/commit/1674d0716c4e76705ce958fc8c464bb9cb4e9320) Add change file on 2022-11-26
+
 ## \[0.4.0]
 
 - Update to gtk 0.15
