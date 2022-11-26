@@ -10,8 +10,8 @@ repository = "https://github.com/tauri-apps/javascriptcore-rs"
 version = "0.4.0"
 
 [package.metadata.system-deps.javascriptcoregtk_4_0]
-name = "javascriptcoregtk-4.1"
-version = "2.38"
+name = "javascriptcoregtk-4.0"
+version = "2.24"
 
 [package.metadata.docs.rs]
 features = ["dox"]
