@@ -1,20 +1,20 @@
 [package]
-authors = ["The Gtk-rs Project Developers"]
+authors = [ "The Gtk-rs Project Developers" ]
 build = "build.rs"
 description = "Sys functions for the Rust bindings of the javacriptcore library"
 edition = "2021"
-keywords = ["javascript", "gtk-rs", "gnome"]
+keywords = [ "javascript", "gtk-rs", "gnome" ]
 license = "MIT"
 name = "javascriptcore-rs-sys"
 repository = "https://github.com/tauri-apps/javascriptcore-rs"
-version = "0.4.0"
+version = "0.5.0"
 
 [package.metadata.system-deps.javascriptcoregtk_4_0]
 name = "javascriptcoregtk-4.0"
 version = "2.24"
 
 [package.metadata.docs.rs]
-features = ["dox"]
+features = [ "dox" ]
 
 [lib]
 name = "javascriptcore_rs_sys"
@@ -32,5 +32,5 @@ shell-words = "1.0.0"
 tempfile = "3"
 
 [features]
-dox = []
-v2_28 = []
+dox = [ ]
+v2_28 = [ ]
