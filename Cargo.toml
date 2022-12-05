@@ -20,7 +20,7 @@ glib = "^0.16.0"
   [dependencies.ffi]
   package = "javascriptcore-rs-sys"
   path = "./sys"
-  version = "0.4"
+  version = "0.5"
 
 [features]
 dox = [ "ffi/dox" ]
