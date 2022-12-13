@@ -17,10 +17,10 @@ name = "javascriptcore"
 bitflags = "^1.0"
 glib = "^0.16.0"
 
-  [dependencies.ffi]
-  package = "javascriptcore-rs-sys"
-  path = "./sys"
-  version = "0.5"
+[dependencies.ffi]
+package = "javascriptcore-rs-sys"
+path = "./sys"
+version = "0.5"
 
 [features]
 dox = [ "ffi/dox" ]

@@ -5,7 +5,7 @@ library = "JavaScriptCore"
 min_cfg_version = "2.24"
 single_version_file = true
 target_path = "."
-version = "4.0"
+version = "4.1"
 work_mode = "normal"
 
 external_libraries = ["GLib", "GObject"]
@@ -19,18 +19,12 @@ generate = [
   "JavaScriptCore.ClassGetPropertyFunction",
   "JavaScriptCore.ClassHasPropertyFunction",
   "JavaScriptCore.ClassSetPropertyFunction",
-  "JavaScriptCore.ClassVariadicFunction",
-  "JavaScriptCore.Constructor",
   "JavaScriptCore.Exception",
   "JavaScriptCore.ExceptionHandler",
-  "JavaScriptCore.Getter",
   "JavaScriptCore.OptionsFunc",
   "JavaScriptCore.OptionType",
-  "JavaScriptCore.PropertyGetter",
-  "JavaScriptCore.PropertySetter",
-  "JavaScriptCore.Setter",
+  "JavaScriptCore.TypedArrayType",
   "JavaScriptCore.ValuePropertyFlags",
-  "JavaScriptCore.VariadicFunction",
   "JavaScriptCore.VirtualMachine",
 ]
 
@@ -39,8 +33,6 @@ manual = [
   "GLib.DestroyNotify",
   "GLib.OptionGroup",
   "GObject.Callback",
-  "JavaScriptCore.StringRef",
-  "JavaScriptCore.GlobalContextRef",
 ]
 
 [[object]]

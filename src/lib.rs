@@ -5,10 +5,11 @@
 
 mod auto;
 pub use auto::{traits::*, *};
-mod global_context_ref;
-mod string_ref;
-mod value_ref;
+// TODO Remove them
+// mod global_context_ref;
+// mod string_ref;
+// mod value_ref;
 
-pub use global_context_ref::*;
-pub use string_ref::*;
-pub use value_ref::*;
+// pub use global_context_ref::*;
+// pub use string_ref::*;
+// pub use value_ref::*;
