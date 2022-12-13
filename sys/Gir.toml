@@ -5,8 +5,8 @@ target_path = "."
 min_cfg_version = "2.24"
 work_mode = "sys"
 girs_directories = [ "../gir-files/" ]
-
 external_libraries = [
     "GLib",
     "GObject",
 ]
+

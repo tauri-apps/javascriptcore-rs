@@ -7,8 +7,7 @@ keywords = ["javascript", "gtk-rs", "gnome"]
 license = "MIT"
 name = "javascriptcore-rs-sys"
 repository = "https://github.com/tauri-apps/javascriptcore-rs"
-version = "0.5.0"   
-
+version = "0.5.0"
 [package.metadata.system-deps.javascriptcoregtk_4_1]
 name = "javascriptcoregtk-4.1"
 version = "2.24"
@@ -18,7 +17,6 @@ version = "2.28"
 
 [package.metadata.system-deps.javascriptcoregtk_4_1.v2_38]
 version = "2.38"
-
 [package.metadata.docs.rs]
 features = ["dox"]
 
