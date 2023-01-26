@@ -1,5 +1,10 @@
 # Changelog
 
+## \[0.5.1]
+
+- Update link library to javascriptcoregtk-4.1.
+  - [371ffa6](https://github.com/tauri-apps/javascriptcore-rs/commit/371ffa6a9946a4ff7903a4896bf68a0c7fe91bdc) Update link to javascriptcoregtk-4.1 on 2023-01-26
+
 ## \[0.5.0]
 
 - Update gtk crates to 0.16 and update to 2021 edition.
