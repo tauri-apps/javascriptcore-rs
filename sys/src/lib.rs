@@ -364,7 +364,7 @@ impl ::std::fmt::Debug for JSCWeakValue {
   }
 }
 
-#[link(name = "javascriptcoregtk-4.0")]
+#[link(name = "javascriptcoregtk-4.1")]
 extern "C" {
 
   //=========================================================================

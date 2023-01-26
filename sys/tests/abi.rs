@@ -14,7 +14,7 @@ use std::{
 };
 use tempfile::Builder;
 
-static PACKAGES: &[&str] = &["javascriptcoregtk-4.0"];
+static PACKAGES: &[&str] = &["javascriptcoregtk-4.1"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
