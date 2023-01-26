@@ -5,7 +5,7 @@ library = "JavaScriptCore"
 min_cfg_version = "2.24"
 single_version_file = true
 target_path = "."
-version = "4.0"
+version = "4.1"
 work_mode = "normal"
 
 external_libraries = ["GLib", "GObject"]
