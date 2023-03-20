@@ -27,18 +27,6 @@ impl Value {
         pub const NONE: Option<&'static Value> = None;
     
 
-    //#[doc(alias = "jsc_value_new_array")]
-    //pub fn new_array(context: &impl IsA<Context>, first_item_type: glib::types::Type, : /*Unknown conversion*//*Unimplemented*/Basic: VarArgs) -> Value {
-    //    unsafe { TODO: call ffi:jsc_value_new_array() }
-    //}
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_new_array_buffer")]
-    //pub fn new_array_buffer(context: &impl IsA<Context>, data: /*Unimplemented*/Option<Basic: Pointer>, size: usize, user_data: /*Unimplemented*/Option<Basic: Pointer>) -> Option<Value> {
-    //    unsafe { TODO: call ffi:jsc_value_new_array_buffer() }
-    //}
-
     #[doc(alias = "jsc_value_new_array_from_garray")]
     pub fn new_array_from_garray(context: &impl IsA<Context>, array: &[Value]) -> Value {
         unsafe {
@@ -188,11 +176,6 @@ if let Some(ref context) = self.context {
 }
 
 pub trait ValueExt: 'static {
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_array_buffer_get_data")]
-    //fn array_buffer_get_data(&self, size: usize) -> /*Unimplemented*/Option<Basic: Pointer>;
-
     #[cfg(any(feature = "v2_38", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     #[doc(alias = "jsc_value_array_buffer_get_size")]
@@ -328,11 +311,6 @@ pub trait ValueExt: 'static {
 #[must_use]
     fn typed_array_get_buffer(&self) -> Option<Value>;
 
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //#[doc(alias = "jsc_value_typed_array_get_data")]
-    //fn typed_array_get_data(&self) -> (/*Unimplemented*/Option<Basic: Pointer>, usize);
-
     #[cfg(any(feature = "v2_38", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     #[doc(alias = "jsc_value_typed_array_get_length")]
@@ -355,12 +333,6 @@ pub trait ValueExt: 'static {
 }
 
 impl<O: IsA<Value>> ValueExt for O {
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //fn array_buffer_get_data(&self, size: usize) -> /*Unimplemented*/Option<Basic: Pointer> {
-    //    unsafe { TODO: call ffi:jsc_value_array_buffer_get_data() }
-    //}
-
     #[cfg(any(feature = "v2_38", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
     fn array_buffer_get_size(&self) -> usize {
@@ -589,12 +561,6 @@ impl<O: IsA<Value>> ValueExt for O {
             from_glib_full(ffi::jsc_value_typed_array_get_buffer(self.as_ref().to_glib_none().0))
         }
     }
-
-    //#[cfg(any(feature = "v2_38", feature = "dox"))]
-    //#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-    //fn typed_array_get_data(&self) -> (/*Unimplemented*/Option<Basic: Pointer>, usize) {
-    //    unsafe { TODO: call ffi:jsc_value_typed_array_get_data() }
-    //}
 
     #[cfg(any(feature = "v2_38", feature = "dox"))]
     #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]

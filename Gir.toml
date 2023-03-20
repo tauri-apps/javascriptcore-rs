@@ -45,6 +45,18 @@ status = "generate"
 generate_builder = true
 name = "JavaScriptCore.Value"
 status = "generate"
+    [[object.function]]
+    name = "new_array"
+    ignore = true
+    [[object.function]]
+    name = "new_array_buffer"
+    manual = true
+    [[object.function]]
+    name = "array_buffer_get_data"
+    manual = true
+    [[object.function]]
+    name = "typed_array_get_data"
+    manual = true
 
 # [[object.function]]
 # ignore = true

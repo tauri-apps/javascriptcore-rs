@@ -6,3 +6,5 @@
 mod auto;
 pub use auto::{traits::*, *};
 
+mod value;
+pub use value::*;
