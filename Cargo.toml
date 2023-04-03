@@ -23,5 +23,7 @@ glib = "^0.16.0"
   version = "0.5"
 
 [features]
+default = [ "v2_38" ]
 dox = [ "ffi/dox" ]
 v2_28 = [ "ffi/v2_28" ]
+v2_38 = [ "ffi/v2_38", "v2_28" ]
