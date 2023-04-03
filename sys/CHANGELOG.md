@@ -1,5 +1,10 @@
 # Changelog
 
+## \[1.0.0]
+
+- Cleanup codebase and bump to major.
+  - [ae6b74e](https://github.com/tauri-apps/javascriptcore-rs/commit/ae6b74eb8161d46739334b8b4e25719c563a8da9) Add change file on 2023-04-03
+
 ## \[0.5.1]
 
 - Update link library to javascriptcoregtk-4.1.
