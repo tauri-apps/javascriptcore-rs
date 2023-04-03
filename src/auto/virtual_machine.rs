@@ -15,25 +15,22 @@ glib::wrapper! {
 }
 
 impl VirtualMachine {
-        pub const NONE: Option<&'static VirtualMachine> = None;
-    
+  pub const NONE: Option<&'static VirtualMachine> = None;
 
-    #[doc(alias = "jsc_virtual_machine_new")]
-    pub fn new() -> VirtualMachine {
-        unsafe {
-            from_glib_full(ffi::jsc_virtual_machine_new())
-        }
-    }
+  #[doc(alias = "jsc_virtual_machine_new")]
+  pub fn new() -> VirtualMachine {
+    unsafe { from_glib_full(ffi::jsc_virtual_machine_new()) }
+  }
 }
 
 impl Default for VirtualMachine {
-                     fn default() -> Self {
-                         Self::new()
-                     }
-                 }
+  fn default() -> Self {
+    Self::new()
+  }
+}
 
 impl fmt::Display for VirtualMachine {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        f.write_str("VirtualMachine")
-    }
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    f.write_str("VirtualMachine")
+  }
 }

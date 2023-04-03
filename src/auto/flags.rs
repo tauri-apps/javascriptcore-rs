@@ -19,24 +19,23 @@ bitflags! {
 }
 
 impl fmt::Display for ValuePropertyFlags {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        <Self as fmt::Debug>::fmt(self, f)
-    }
+  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    <Self as fmt::Debug>::fmt(self, f)
+  }
 }
 
 #[doc(hidden)]
 impl IntoGlib for ValuePropertyFlags {
-    type GlibType = ffi::JSCValuePropertyFlags;
+  type GlibType = ffi::JSCValuePropertyFlags;
 
-    fn into_glib(self) -> ffi::JSCValuePropertyFlags {
-        self.bits()
-    }
+  fn into_glib(self) -> ffi::JSCValuePropertyFlags {
+    self.bits()
+  }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCValuePropertyFlags> for ValuePropertyFlags {
-    unsafe fn from_glib(value: ffi::JSCValuePropertyFlags) -> Self {
-        Self::from_bits_truncate(value)
-    }
+  unsafe fn from_glib(value: ffi::JSCValuePropertyFlags) -> Self {
+    Self::from_bits_truncate(value)
+  }
 }
-
