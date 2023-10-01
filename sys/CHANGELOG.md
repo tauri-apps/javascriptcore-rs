@@ -1,5 +1,10 @@
 # Changelog
 
+## \[1.1.0]
+
+- [`0ed9caf`](https://github.com/tauri-apps/javascriptcore-rs/commit/0ed9caf1da825bfe25fe9d7e1be7dd1f87422982) Update to gtk 0.18.
+  Increase MSRV to 1.70.0
+
 ## \[1.0.0]
 
 - Cleanup codebase and bump to major.
