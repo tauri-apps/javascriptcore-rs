@@ -3,9 +3,7 @@
 // DO NOT EDIT
 
 use crate::Context;
-use glib::object::IsA;
-use glib::translate::*;
-use std::fmt;
+use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
     #[doc(alias = "JSCException")]
@@ -64,47 +62,21 @@ impl Exception {
   //}
 }
 
-impl fmt::Display for Exception {
+impl std::fmt::Display for Exception {
   #[inline]
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+  fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
     f.write_str(&ExceptionExt::to_str(self))
   }
 }
 
-pub trait ExceptionExt: 'static {
-  #[doc(alias = "jsc_exception_get_backtrace_string")]
-  #[doc(alias = "get_backtrace_string")]
-  fn backtrace_string(&self) -> Option<glib::GString>;
-
-  #[doc(alias = "jsc_exception_get_column_number")]
-  #[doc(alias = "get_column_number")]
-  fn column_number(&self) -> u32;
-
-  #[doc(alias = "jsc_exception_get_line_number")]
-  #[doc(alias = "get_line_number")]
-  fn line_number(&self) -> u32;
-
-  #[doc(alias = "jsc_exception_get_message")]
-  #[doc(alias = "get_message")]
-  fn message(&self) -> Option<glib::GString>;
-
-  #[doc(alias = "jsc_exception_get_name")]
-  #[doc(alias = "get_name")]
-  fn name(&self) -> Option<glib::GString>;
-
-  #[doc(alias = "jsc_exception_get_source_uri")]
-  #[doc(alias = "get_source_uri")]
-  fn source_uri(&self) -> Option<glib::GString>;
-
-  #[doc(alias = "jsc_exception_report")]
-  fn report(&self) -> Option<glib::GString>;
-
-  #[doc(alias = "jsc_exception_to_string")]
-  #[doc(alias = "to_string")]
-  fn to_str(&self) -> glib::GString;
+mod sealed {
+  pub trait Sealed {}
+  impl<T: super::IsA<super::Exception>> Sealed for T {}
 }
 
-impl<O: IsA<Exception>> ExceptionExt for O {
+pub trait ExceptionExt: IsA<Exception> + sealed::Sealed + 'static {
+  #[doc(alias = "jsc_exception_get_backtrace_string")]
+  #[doc(alias = "get_backtrace_string")]
   fn backtrace_string(&self) -> Option<glib::GString> {
     unsafe {
       from_glib_none(ffi::jsc_exception_get_backtrace_string(
@@ -113,14 +85,20 @@ impl<O: IsA<Exception>> ExceptionExt for O {
     }
   }
 
+  #[doc(alias = "jsc_exception_get_column_number")]
+  #[doc(alias = "get_column_number")]
   fn column_number(&self) -> u32 {
     unsafe { ffi::jsc_exception_get_column_number(self.as_ref().to_glib_none().0) }
   }
 
+  #[doc(alias = "jsc_exception_get_line_number")]
+  #[doc(alias = "get_line_number")]
   fn line_number(&self) -> u32 {
     unsafe { ffi::jsc_exception_get_line_number(self.as_ref().to_glib_none().0) }
   }
 
+  #[doc(alias = "jsc_exception_get_message")]
+  #[doc(alias = "get_message")]
   fn message(&self) -> Option<glib::GString> {
     unsafe {
       from_glib_none(ffi::jsc_exception_get_message(
@@ -129,10 +107,14 @@ impl<O: IsA<Exception>> ExceptionExt for O {
     }
   }
 
+  #[doc(alias = "jsc_exception_get_name")]
+  #[doc(alias = "get_name")]
   fn name(&self) -> Option<glib::GString> {
     unsafe { from_glib_none(ffi::jsc_exception_get_name(self.as_ref().to_glib_none().0)) }
   }
 
+  #[doc(alias = "jsc_exception_get_source_uri")]
+  #[doc(alias = "get_source_uri")]
   fn source_uri(&self) -> Option<glib::GString> {
     unsafe {
       from_glib_none(ffi::jsc_exception_get_source_uri(
@@ -141,11 +123,16 @@ impl<O: IsA<Exception>> ExceptionExt for O {
     }
   }
 
+  #[doc(alias = "jsc_exception_report")]
   fn report(&self) -> Option<glib::GString> {
     unsafe { from_glib_full(ffi::jsc_exception_report(self.as_ref().to_glib_none().0)) }
   }
 
+  #[doc(alias = "jsc_exception_to_string")]
+  #[doc(alias = "to_string")]
   fn to_str(&self) -> glib::GString {
     unsafe { from_glib_full(ffi::jsc_exception_to_string(self.as_ref().to_glib_none().0)) }
   }
 }
+
+impl<O: IsA<Exception>> ExceptionExt for O {}

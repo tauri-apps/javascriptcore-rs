@@ -24,22 +24,20 @@ mod enums;
 pub use self::enums::CheckSyntaxMode;
 pub use self::enums::CheckSyntaxResult;
 pub use self::enums::OptionType;
-#[cfg(any(feature = "v2_38", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+#[cfg(feature = "v2_38")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
 pub use self::enums::TypedArrayType;
 
 mod flags;
 pub use self::flags::ValuePropertyFlags;
 
-#[doc(hidden)]
-pub mod traits {
+pub(crate) mod traits {
   pub use super::context::ContextExt;
   pub use super::exception::ExceptionExt;
   pub use super::value::ValueExt;
   pub use super::weak_value::WeakValueExt;
 }
-#[doc(hidden)]
-pub mod builders {
+pub(crate) mod builders {
   pub use super::context::ContextBuilder;
   pub use super::value::ValueBuilder;
   pub use super::weak_value::WeakValueBuilder;

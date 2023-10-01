@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
@@ -17,24 +16,11 @@ pub enum CheckSyntaxMode {
   __Unknown(i32),
 }
 
-impl fmt::Display for CheckSyntaxMode {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    write!(
-      f,
-      "CheckSyntaxMode::{}",
-      match *self {
-        Self::Script => "Script",
-        Self::Module => "Module",
-        _ => "Unknown",
-      }
-    )
-  }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CheckSyntaxMode {
   type GlibType = ffi::JSCCheckSyntaxMode;
 
+  #[inline]
   fn into_glib(self) -> ffi::JSCCheckSyntaxMode {
     match self {
       Self::Script => ffi::JSC_CHECK_SYNTAX_MODE_SCRIPT,
@@ -46,6 +32,7 @@ impl IntoGlib for CheckSyntaxMode {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCCheckSyntaxMode> for CheckSyntaxMode {
+  #[inline]
   unsafe fn from_glib(value: ffi::JSCCheckSyntaxMode) -> Self {
     match value {
       ffi::JSC_CHECK_SYNTAX_MODE_SCRIPT => Self::Script,
@@ -75,28 +62,11 @@ pub enum CheckSyntaxResult {
   __Unknown(i32),
 }
 
-impl fmt::Display for CheckSyntaxResult {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    write!(
-      f,
-      "CheckSyntaxResult::{}",
-      match *self {
-        Self::Success => "Success",
-        Self::RecoverableError => "RecoverableError",
-        Self::IrrecoverableError => "IrrecoverableError",
-        Self::UnterminatedLiteralError => "UnterminatedLiteralError",
-        Self::OutOfMemoryError => "OutOfMemoryError",
-        Self::StackOverflowError => "StackOverflowError",
-        _ => "Unknown",
-      }
-    )
-  }
-}
-
 #[doc(hidden)]
 impl IntoGlib for CheckSyntaxResult {
   type GlibType = ffi::JSCCheckSyntaxResult;
 
+  #[inline]
   fn into_glib(self) -> ffi::JSCCheckSyntaxResult {
     match self {
       Self::Success => ffi::JSC_CHECK_SYNTAX_RESULT_SUCCESS,
@@ -112,6 +82,7 @@ impl IntoGlib for CheckSyntaxResult {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCCheckSyntaxResult> for CheckSyntaxResult {
+  #[inline]
   unsafe fn from_glib(value: ffi::JSCCheckSyntaxResult) -> Self {
     match value {
       ffi::JSC_CHECK_SYNTAX_RESULT_SUCCESS => Self::Success,
@@ -147,29 +118,11 @@ pub enum OptionType {
   __Unknown(i32),
 }
 
-impl fmt::Display for OptionType {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    write!(
-      f,
-      "OptionType::{}",
-      match *self {
-        Self::Boolean => "Boolean",
-        Self::Int => "Int",
-        Self::Uint => "Uint",
-        Self::Size => "Size",
-        Self::Double => "Double",
-        Self::String => "String",
-        Self::RangeString => "RangeString",
-        _ => "Unknown",
-      }
-    )
-  }
-}
-
 #[doc(hidden)]
 impl IntoGlib for OptionType {
   type GlibType = ffi::JSCOptionType;
 
+  #[inline]
   fn into_glib(self) -> ffi::JSCOptionType {
     match self {
       Self::Boolean => ffi::JSC_OPTION_BOOLEAN,
@@ -186,6 +139,7 @@ impl IntoGlib for OptionType {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCOptionType> for OptionType {
+  #[inline]
   unsafe fn from_glib(value: ffi::JSCOptionType) -> Self {
     match value {
       ffi::JSC_OPTION_BOOLEAN => Self::Boolean,
@@ -200,8 +154,8 @@ impl FromGlib<ffi::JSCOptionType> for OptionType {
   }
 }
 
-#[cfg(any(feature = "v2_38", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+#[cfg(feature = "v2_38")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
 #[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "JSCTypedArrayType")]
@@ -234,38 +188,13 @@ pub enum TypedArrayType {
   __Unknown(i32),
 }
 
-#[cfg(any(feature = "v2_38", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
-impl fmt::Display for TypedArrayType {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    write!(
-      f,
-      "TypedArrayType::{}",
-      match *self {
-        Self::None => "None",
-        Self::Int8 => "Int8",
-        Self::Int16 => "Int16",
-        Self::Int32 => "Int32",
-        Self::Int64 => "Int64",
-        Self::Uint8 => "Uint8",
-        Self::Uint8Clamped => "Uint8Clamped",
-        Self::Uint16 => "Uint16",
-        Self::Uint32 => "Uint32",
-        Self::Uint64 => "Uint64",
-        Self::Float32 => "Float32",
-        Self::Float64 => "Float64",
-        _ => "Unknown",
-      }
-    )
-  }
-}
-
-#[cfg(any(feature = "v2_38", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+#[cfg(feature = "v2_38")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
 #[doc(hidden)]
 impl IntoGlib for TypedArrayType {
   type GlibType = ffi::JSCTypedArrayType;
 
+  #[inline]
   fn into_glib(self) -> ffi::JSCTypedArrayType {
     match self {
       Self::None => ffi::JSC_TYPED_ARRAY_NONE,
@@ -285,10 +214,11 @@ impl IntoGlib for TypedArrayType {
   }
 }
 
-#[cfg(any(feature = "v2_38", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+#[cfg(feature = "v2_38")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
 #[doc(hidden)]
 impl FromGlib<ffi::JSCTypedArrayType> for TypedArrayType {
+  #[inline]
   unsafe fn from_glib(value: ffi::JSCTypedArrayType) -> Self {
     match value {
       ffi::JSC_TYPED_ARRAY_NONE => Self::None,

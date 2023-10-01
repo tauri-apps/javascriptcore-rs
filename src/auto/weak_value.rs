@@ -3,16 +3,12 @@
 // DO NOT EDIT
 
 use crate::Value;
-use glib::object::Cast;
-use glib::object::IsA;
-use glib::signal::connect_raw;
-use glib::signal::SignalHandlerId;
-use glib::translate::*;
-use glib::StaticType;
-use glib::ToValue;
+use glib::{
+  prelude::*,
+  signal::{connect_raw, SignalHandlerId},
+  translate::*,
+};
 use std::boxed::Box as Box_;
-use std::fmt;
-use std::mem::transmute;
 
 glib::wrapper! {
     #[doc(alias = "JSCWeakValue")]
@@ -36,60 +32,54 @@ impl WeakValue {
   ///
   /// This method returns an instance of [`WeakValueBuilder`](crate::builders::WeakValueBuilder) which can be used to create [`WeakValue`] objects.
   pub fn builder() -> WeakValueBuilder {
-    WeakValueBuilder::default()
+    WeakValueBuilder::new()
   }
 }
 
 impl Default for WeakValue {
   fn default() -> Self {
-    glib::object::Object::new::<Self>(&[])
+    glib::object::Object::new::<Self>()
   }
 }
 
-#[derive(Clone, Default)]
 // rustdoc-stripper-ignore-next
 /// A [builder-pattern] type to construct [`WeakValue`] objects.
 ///
 /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
 #[must_use = "The builder must be built to be used"]
 pub struct WeakValueBuilder {
-  value: Option<Value>,
+  builder: glib::object::ObjectBuilder<'static, WeakValue>,
 }
 
 impl WeakValueBuilder {
-  // rustdoc-stripper-ignore-next
-  /// Create a new [`WeakValueBuilder`].
-  pub fn new() -> Self {
-    Self::default()
+  fn new() -> Self {
+    Self {
+      builder: glib::object::Object::builder(),
+    }
+  }
+
+  pub fn value(self, value: &impl IsA<Value>) -> Self {
+    Self {
+      builder: self.builder.property("value", value.clone().upcast()),
+    }
   }
 
   // rustdoc-stripper-ignore-next
   /// Build the [`WeakValue`].
   #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
   pub fn build(self) -> WeakValue {
-    let mut properties: Vec<(&str, &dyn ToValue)> = vec![];
-    if let Some(ref value) = self.value {
-      properties.push(("value", value));
-    }
-    glib::Object::new::<WeakValue>(&properties)
-  }
-
-  pub fn value(mut self, value: &impl IsA<Value>) -> Self {
-    self.value = Some(value.clone().upcast());
-    self
+    self.builder.build()
   }
 }
 
-pub trait WeakValueExt: 'static {
+mod sealed {
+  pub trait Sealed {}
+  impl<T: super::IsA<super::WeakValue>> Sealed for T {}
+}
+
+pub trait WeakValueExt: IsA<WeakValue> + sealed::Sealed + 'static {
   #[doc(alias = "jsc_weak_value_get_value")]
   #[doc(alias = "get_value")]
-  fn value(&self) -> Option<Value>;
-
-  #[doc(alias = "cleared")]
-  fn connect_cleared<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId;
-}
-
-impl<O: IsA<WeakValue>> WeakValueExt for O {
   fn value(&self) -> Option<Value> {
     unsafe {
       from_glib_full(ffi::jsc_weak_value_get_value(
@@ -98,6 +88,7 @@ impl<O: IsA<WeakValue>> WeakValueExt for O {
     }
   }
 
+  #[doc(alias = "cleared")]
   fn connect_cleared<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
     unsafe extern "C" fn cleared_trampoline<P: IsA<WeakValue>, F: Fn(&P) + 'static>(
       this: *mut ffi::JSCWeakValue,
@@ -111,7 +102,7 @@ impl<O: IsA<WeakValue>> WeakValueExt for O {
       connect_raw(
         self.as_ptr() as *mut _,
         b"cleared\0".as_ptr() as *const _,
-        Some(transmute::<_, unsafe extern "C" fn()>(
+        Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
           cleared_trampoline::<Self, F> as *const (),
         )),
         Box_::into_raw(f),
@@ -120,8 +111,4 @@ impl<O: IsA<WeakValue>> WeakValueExt for O {
   }
 }
 
-impl fmt::Display for WeakValue {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    f.write_str("WeakValue")
-  }
-}
+impl<O: IsA<WeakValue>> WeakValueExt for O {}

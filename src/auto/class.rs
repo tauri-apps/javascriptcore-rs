@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "JSCClass")]
@@ -61,11 +60,5 @@ impl Class {
   #[must_use]
   pub fn parent(&self) -> Option<Class> {
     unsafe { from_glib_none(ffi::jsc_class_get_parent(self.to_glib_none().0)) }
-  }
-}
-
-impl fmt::Display for Class {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    f.write_str("Class")
   }
 }

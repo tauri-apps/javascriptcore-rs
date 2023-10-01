@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use glib::translate::*;
-use std::fmt;
 
 glib::wrapper! {
     #[doc(alias = "JSCVirtualMachine")]
@@ -26,11 +25,5 @@ impl VirtualMachine {
 impl Default for VirtualMachine {
   fn default() -> Self {
     Self::new()
-  }
-}
-
-impl fmt::Display for VirtualMachine {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    f.write_str("VirtualMachine")
   }
 }

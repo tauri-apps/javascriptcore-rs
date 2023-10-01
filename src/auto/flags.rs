@@ -2,11 +2,10 @@
 // from gir-files (https://github.com/tauri-apps/gir-files)
 // DO NOT EDIT
 
-use bitflags::bitflags;
-use glib::translate::*;
-use std::fmt;
+use glib::{bitflags::bitflags, translate::*};
 
 bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
     #[doc(alias = "JSCValuePropertyFlags")]
     pub struct ValuePropertyFlags: u32 {
         #[doc(alias = "JSC_VALUE_PROPERTY_CONFIGURABLE")]
@@ -18,16 +17,11 @@ bitflags! {
     }
 }
 
-impl fmt::Display for ValuePropertyFlags {
-  fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-    <Self as fmt::Debug>::fmt(self, f)
-  }
-}
-
 #[doc(hidden)]
 impl IntoGlib for ValuePropertyFlags {
   type GlibType = ffi::JSCValuePropertyFlags;
 
+  #[inline]
   fn into_glib(self) -> ffi::JSCValuePropertyFlags {
     self.bits()
   }
@@ -35,6 +29,7 @@ impl IntoGlib for ValuePropertyFlags {
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCValuePropertyFlags> for ValuePropertyFlags {
+  #[inline]
   unsafe fn from_glib(value: ffi::JSCValuePropertyFlags) -> Self {
     Self::from_bits_truncate(value)
   }
