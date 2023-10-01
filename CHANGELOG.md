@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.1.1]
+
+- [`92bf665`](https://github.com/tauri-apps/javascriptcore-rs/commit/92bf66509d773a704a24f228a7157a41d608bd80) Update dependency of javascriptcore-rs-sys to 1.1.
+
 ## \[1.1.0]
 
 - [`0ed9caf`](https://github.com/tauri-apps/javascriptcore-rs/commit/0ed9caf1da825bfe25fe9d7e1be7dd1f87422982) Update to gtk 0.18.
