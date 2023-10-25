@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/tauri-apps/gir-files)
 // DO NOT EDIT
 
-use glib::{bitflags::bitflags,translate::*};
+use glib::{bitflags::bitflags, translate::*};
 
 bitflags! {
     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
@@ -19,19 +19,18 @@ bitflags! {
 
 #[doc(hidden)]
 impl IntoGlib for ValuePropertyFlags {
-    type GlibType = ffi::JSCValuePropertyFlags;
+  type GlibType = ffi::JSCValuePropertyFlags;
 
-    #[inline]
-    fn into_glib(self) -> ffi::JSCValuePropertyFlags {
-        self.bits()
-    }
+  #[inline]
+  fn into_glib(self) -> ffi::JSCValuePropertyFlags {
+    self.bits()
+  }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::JSCValuePropertyFlags> for ValuePropertyFlags {
-    #[inline]
-    unsafe fn from_glib(value: ffi::JSCValuePropertyFlags) -> Self {
-        Self::from_bits_truncate(value)
-    }
+  #[inline]
+  unsafe fn from_glib(value: ffi::JSCValuePropertyFlags) -> Self {
+    Self::from_bits_truncate(value)
+  }
 }
-
