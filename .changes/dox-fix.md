@@ -3,4 +3,4 @@
 "javascriptcore-rs": patch
 ---
 
-Properly replace dox with docrs to fix docs.rs building.
+Properly replace dox with docsrs to fix docs.rs building.
