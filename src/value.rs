@@ -8,8 +8,8 @@ use std::ffi::c_void;
 use std::slice;
 
 impl Value {
-  #[cfg(any(feature = "v2_38", feature = "dox"))]
-  #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+  #[cfg(any(feature = "v2_38", docrs))]
+  #[cfg_attr(docrs, doc(cfg(feature = "v2_38")))]
   #[doc(alias = "jsc_value_new_array_buffer")]
   pub fn new_array_buffer(context: &impl IsA<Context>, data: glib::Bytes) -> Option<Value> {
     let len = data.len();
@@ -33,20 +33,20 @@ impl Value {
 }
 
 pub trait ValueExtManual: 'static {
-  #[cfg(any(feature = "v2_38", feature = "dox"))]
-  #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+  #[cfg(any(feature = "v2_38", docrs))]
+  #[cfg_attr(docrs, doc(cfg(feature = "v2_38")))]
   #[doc(alias = "jsc_value_array_buffer_get_data")]
   fn array_buffer_get_data(&self) -> &[u8];
 
-  #[cfg(any(feature = "v2_38", feature = "dox"))]
-  #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+  #[cfg(any(feature = "v2_38", docrs))]
+  #[cfg_attr(docrs, doc(cfg(feature = "v2_38")))]
   #[doc(alias = "jsc_value_typed_array_get_data")]
   fn typed_array_get_data(&self) -> TypedArrayData;
 }
 
 impl<O: IsA<Value>> ValueExtManual for O {
-  #[cfg(any(feature = "v2_38", feature = "dox"))]
-  #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+  #[cfg(any(feature = "v2_38", docrs))]
+  #[cfg_attr(docrs, doc(cfg(feature = "v2_38")))]
   fn array_buffer_get_data(&self) -> &[u8] {
     unsafe {
       let mut len = 0;
@@ -59,8 +59,8 @@ impl<O: IsA<Value>> ValueExtManual for O {
     }
   }
 
-  #[cfg(any(feature = "v2_38", feature = "dox"))]
-  #[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+  #[cfg(any(feature = "v2_38", docrs))]
+  #[cfg_attr(docrs, doc(cfg(feature = "v2_38")))]
   fn typed_array_get_data(&self) -> TypedArrayData {
     use crate::TypedArrayType::*;
     unsafe {
@@ -91,8 +91,8 @@ impl<O: IsA<Value>> ValueExtManual for O {
   }
 }
 
-#[cfg(any(feature = "v2_38", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v2_38")))]
+#[cfg(any(feature = "v2_38", docrs))]
+#[cfg_attr(docrs, doc(cfg(feature = "v2_38")))]
 #[derive(Debug, Clone, Copy)]
 #[non_exhaustive]
 pub enum TypedArrayData<'a> {
