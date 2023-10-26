@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.1.1]
+
+- [`4e6b9f4`](https://github.com/tauri-apps/javascriptcore-rs/commit/4e6b9f41121a2b6cbcda6f320e50921829232dc1) Properly replace dox with docsrs to fix docs.rs building.
+
 ## \[1.1.0]
 
 - [`0ed9caf`](https://github.com/tauri-apps/javascriptcore-rs/commit/0ed9caf1da825bfe25fe9d7e1be7dd1f87422982) Update to gtk 0.18.

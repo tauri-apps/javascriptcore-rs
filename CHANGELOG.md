@@ -1,5 +1,9 @@
 # Changelog
 
+## \[1.1.2]
+
+- [`4e6b9f4`](https://github.com/tauri-apps/javascriptcore-rs/commit/4e6b9f41121a2b6cbcda6f320e50921829232dc1) Properly replace dox with docsrs to fix docs.rs building.
+
 ## \[1.1.1]
 
 - [`92bf665`](https://github.com/tauri-apps/javascriptcore-rs/commit/92bf66509d773a704a24f228a7157a41d608bd80) Update dependency of javascriptcore-rs-sys to 1.1.
