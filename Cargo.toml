@@ -8,7 +8,9 @@ repository = "https://github.com/tauri-apps/javascriptcore-rs"
 version = "1.1.1"
 
 [package.metadata.docs.rs]
-features = [ "dox" ]
+all-features = true
+rustc-args = [ "--cfg", "docsrs" ]
+rustdoc-args = [ "--cfg", "docsrs" ]
 
 [lib]
 name = "javascriptcore"
@@ -24,6 +26,5 @@ glib = "^0.18.0"
 
 [features]
 default = [ "v2_38" ]
-dox = [ "ffi/dox" ]
 v2_28 = [ "ffi/v2_28" ]
 v2_38 = [ "ffi/v2_38", "v2_28" ]
