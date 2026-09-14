@@ -2,8 +2,9 @@
 // from gir-files (https://github.com/tauri-apps/gir-files)
 // DO NOT EDIT
 
-use crate::Value;
+use crate::{ffi, Value};
 use glib::{
+  object::ObjectType as _,
   prelude::*,
   signal::{connect_raw, SignalHandlerId},
   translate::*,
@@ -72,12 +73,7 @@ impl WeakValueBuilder {
   }
 }
 
-mod sealed {
-  pub trait Sealed {}
-  impl<T: super::IsA<super::WeakValue>> Sealed for T {}
-}
-
-pub trait WeakValueExt: IsA<WeakValue> + sealed::Sealed + 'static {
+pub trait WeakValueExt: IsA<WeakValue> + 'static {
   #[doc(alias = "jsc_weak_value_get_value")]
   #[doc(alias = "get_value")]
   fn value(&self) -> Option<Value> {
@@ -94,15 +90,17 @@ pub trait WeakValueExt: IsA<WeakValue> + sealed::Sealed + 'static {
       this: *mut ffi::JSCWeakValue,
       f: glib::ffi::gpointer,
     ) {
-      let f: &F = &*(f as *const F);
-      f(WeakValue::from_glib_borrow(this).unsafe_cast_ref())
+      unsafe {
+        let f: &F = &*(f as *const F);
+        f(WeakValue::from_glib_borrow(this).unsafe_cast_ref())
+      }
     }
     unsafe {
       let f: Box_<F> = Box_::new(f);
       connect_raw(
         self.as_ptr() as *mut _,
-        b"cleared\0".as_ptr() as *const _,
-        Some(std::mem::transmute::<_, unsafe extern "C" fn()>(
+        c"cleared".as_ptr(),
+        Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
           cleared_trampoline::<Self, F> as *const (),
         )),
         Box_::into_raw(f),

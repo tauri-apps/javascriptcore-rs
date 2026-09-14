@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/tauri-apps/gir-files)
 // DO NOT EDIT
 
-use crate::{CheckSyntaxMode, CheckSyntaxResult, Exception, Value, VirtualMachine};
+use crate::{ffi, CheckSyntaxMode, CheckSyntaxResult, Exception, Value, VirtualMachine};
 use glib::{prelude::*, translate::*};
 use std::boxed::Box as Box_;
 
@@ -86,12 +86,7 @@ impl ContextBuilder {
   }
 }
 
-mod sealed {
-  pub trait Sealed {}
-  impl<T: super::IsA<super::Context>> Sealed for T {}
-}
-
-pub trait ContextExt: IsA<Context> + sealed::Sealed + 'static {
+pub trait ContextExt: IsA<Context> + 'static {
   #[doc(alias = "jsc_context_check_syntax")]
   fn check_syntax(
     &self,
@@ -187,6 +182,7 @@ pub trait ContextExt: IsA<Context> + sealed::Sealed + 'static {
 
   #[doc(alias = "jsc_context_get_virtual_machine")]
   #[doc(alias = "get_virtual_machine")]
+  #[doc(alias = "virtual-machine")]
   fn virtual_machine(&self) -> Option<VirtualMachine> {
     unsafe {
       from_glib_none(ffi::jsc_context_get_virtual_machine(
@@ -210,16 +206,20 @@ pub trait ContextExt: IsA<Context> + sealed::Sealed + 'static {
       exception: *mut ffi::JSCException,
       user_data: glib::ffi::gpointer,
     ) {
-      let context = from_glib_borrow(context);
-      let exception = from_glib_borrow(exception);
-      let callback: &P = &*(user_data as *mut _);
-      (*callback)(&context, &exception)
+      unsafe {
+        let context = from_glib_borrow(context);
+        let exception = from_glib_borrow(exception);
+        let callback = &*(user_data as *mut P);
+        (*callback)(&context, &exception)
+      }
     }
     let handler = Some(handler_func::<P> as _);
     unsafe extern "C" fn destroy_notify_func<P: Fn(&Context, &Exception) + 'static>(
       data: glib::ffi::gpointer,
     ) {
-      let _callback: Box_<P> = Box_::from_raw(data as *mut _);
+      unsafe {
+        let _callback = Box_::from_raw(data as *mut P);
+      }
     }
     let destroy_call3 = Some(destroy_notify_func::<P> as _);
     let super_callback0: Box_<P> = handler_data;

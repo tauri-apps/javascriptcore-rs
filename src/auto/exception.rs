@@ -2,7 +2,7 @@
 // from gir-files (https://github.com/tauri-apps/gir-files)
 // DO NOT EDIT
 
-use crate::Context;
+use crate::{ffi, Context};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -69,12 +69,7 @@ impl std::fmt::Display for Exception {
   }
 }
 
-mod sealed {
-  pub trait Sealed {}
-  impl<T: super::IsA<super::Exception>> Sealed for T {}
-}
-
-pub trait ExceptionExt: IsA<Exception> + sealed::Sealed + 'static {
+pub trait ExceptionExt: IsA<Exception> + 'static {
   #[doc(alias = "jsc_exception_get_backtrace_string")]
   #[doc(alias = "get_backtrace_string")]
   fn backtrace_string(&self) -> Option<glib::GString> {

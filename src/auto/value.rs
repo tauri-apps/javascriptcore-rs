@@ -5,7 +5,7 @@
 #[cfg(feature = "v2_38")]
 #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
 use crate::TypedArrayType;
-use crate::{Context, ValuePropertyFlags};
+use crate::{ffi, Context, ValuePropertyFlags};
 use glib::{prelude::*, translate::*};
 
 glib::wrapper! {
@@ -190,12 +190,7 @@ impl ValueBuilder {
   }
 }
 
-mod sealed {
-  pub trait Sealed {}
-  impl<T: super::IsA<super::Value>> Sealed for T {}
-}
-
-pub trait ValueExt: IsA<Value> + sealed::Sealed + 'static {
+pub trait ValueExt: IsA<Value> + 'static {
   #[cfg(feature = "v2_38")]
   #[cfg_attr(docsrs, doc(cfg(feature = "v2_38")))]
   #[doc(alias = "jsc_value_array_buffer_get_size")]
