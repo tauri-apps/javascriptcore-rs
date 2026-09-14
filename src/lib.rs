@@ -3,6 +3,8 @@
 // // Licensed under the MIT license, see the LICENSE file or <https://opensource.org/licenses/MIT>
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use ffi;
+
 mod auto;
 pub use auto::{traits::*, *};
 
