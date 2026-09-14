@@ -5,6 +5,12 @@ on:
     branches:
       - crate
 
+permissions:
+  # required to create the GitHub Release
+  contents: write
+  # required for creating the Version Packages Release
+  pull-requests: write
+
 jobs:
   version-or-publish:
     runs-on: ubuntu-latest
@@ -15,7 +21,7 @@ jobs:
       successfulPublish: ${{ steps.covector.outputs.successfulPublish }}
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: cargo login
@@ -28,7 +34,6 @@ jobs:
         uses: jbolda/covector/packages/action@covector-v0
         id: covector
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           CARGO_AUDIT_OPTIONS: ${{ secrets.CARGO_AUDIT_OPTIONS }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -36,7 +41,7 @@ jobs:
           createRelease: true
       - name: Create Pull Request With Versions Bumped
         id: cpr
-        uses: tauri-apps/create-pull-request@v3
+        uses: peter-evans/create-pull-request@v8.1.1
         if: steps.covector.outputs.commandRan == 'version'
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -45,3 +50,4 @@ jobs:
           labels: "version updates"
           branch: "release"
           body: ${{ steps.covector.outputs.change }}
+          sign-commits: true
