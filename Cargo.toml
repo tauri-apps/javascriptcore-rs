@@ -17,7 +17,7 @@ name = "javascriptcore"
 
 [dependencies]
 bitflags = "^2.0"
-glib = "^0.18.0"
+glib = "^0.22.0"
 
   [dependencies.ffi]
   package = "javascriptcore-rs-sys"
