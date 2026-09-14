@@ -1,5 +1,5 @@
 ---
-"javascriptcore-rs": patch
+"javascriptcore-rs": major
 ---
 
 Update bitflags dependency version to 2.0.
