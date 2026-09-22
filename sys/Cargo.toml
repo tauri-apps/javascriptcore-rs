@@ -7,7 +7,7 @@ keywords = ["javascript", "gtk-rs", "gnome"]
 license = "MIT"
 name = "javascriptcore-rs-sys"
 repository = "https://github.com/tauri-apps/javascriptcore-rs"
-version = "1.1.1"
+version = "2.0.0"
 
 [package.metadata.system-deps.javascriptcoregtk_4_1]
 name = "javascriptcoregtk-4.1"
