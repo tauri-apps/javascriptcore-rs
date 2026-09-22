@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0]
+
+- [`1e15afb`](https://github.com/tauri-apps/javascriptcore-rs/commit/1e15afba6ed9ad56d3b499e58c36a5e222d84c5e) ([#91](https://github.com/tauri-apps/javascriptcore-rs/pull/91)) Bumped `gir` to `ee0e85140a6f` and regenerated bindings.
+- [`df56e27`](https://github.com/tauri-apps/javascriptcore-rs/commit/df56e274e97fffe4505dd5f2ff17be9a832b078b) ([#88](https://github.com/tauri-apps/javascriptcore-rs/pull/88)) Update glib crates to 0.22. Raised MSRV to 1.92.
+- [`99e6915`](https://github.com/tauri-apps/javascriptcore-rs/commit/99e6915ca802ba16234538674a947347d4ee62c9) ([#86](https://github.com/tauri-apps/javascriptcore-rs/pull/86)) Update bitflags dependency version to 2.0.
+    
+    This avoids duplicated dependencies in downstream crates.
+
 ## \[1.1.2]
 
 - [`4e6b9f4`](https://github.com/tauri-apps/javascriptcore-rs/commit/4e6b9f41121a2b6cbcda6f320e50921829232dc1) Properly replace dox with docsrs to fix docs.rs building.
